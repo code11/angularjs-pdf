@@ -55,44 +55,39 @@ Check [`bower.json` file](https://github.com/sayanee/angularjs-pdf/blob/master/b
 
     ```html
     <div class="wrapper" ng-controller="DocCtrl">
-        <ng-pdf template-url="/partials/viewer.html"></ng-pdf>
+        <ng-pdf template-url="/partials/viewer.html" pdf-url="pdfUrl"></ng-pdf>
     </div>
     ```
     - `scale` as an option
 
       ```html
-      <ng-pdf template-url="/partials/viewer.html" scale=1></ng-pdf>
+      <ng-pdf template-url="/partials/viewer.html" pdf-url="pdfUrl" scale=1></ng-pdf>
       ```
 
       `scale` attribute can also be `page-fit`
 
       ```html
-      <ng-pdf template-url="/partials/viewer.html" scale="page-fit"></ng-pdf>
+      <ng-pdf template-url="/partials/viewer.html" pdf-url="pdfUrl" scale="page-fit"></ng-pdf>
       ```
     - `page` as an option for initial page number
 
       ```html
-      <ng-pdf template-url="/partials/viewer.html" page=12></ng-pdf>
-      ```
-    - `canvasid` as an option for `id` of the canvas (default for `canvasid` is `pdf-canvas`)
-
-      ```html
-      <ng-pdf template-url="/partials/viewer.html" canvasid="mycanvas"></ng-pdf>
+      <ng-pdf template-url="/partials/viewer.html" pdf-url="pdfUrl" page=12></ng-pdf>
       ```
     - `usecredentials` as an option to add credentials / authorization
 
       ```html
-      <ng-pdf template-url="/partials/viewer.html" usecredentials="true"></ng-pdf>
+      <ng-pdf template-url="/partials/viewer.html" pdf-url="pdfUrl" usecredentials="true"></ng-pdf>
       ```
     - `debug` to enable debugging console output (optional, disabled by default)
 
       ```html
-      <ng-pdf template-url="/partials/viewer.html" debug="true"></ng-pdf>
+      <ng-pdf template-url="/partials/viewer.html" pdf-url="pdfUrl" debug="true"></ng-pdf>
       ```
 - Include the `canvas` element to display the pdf in the template-url file
 
   ```html
-  <canvas id="pdf-canvas"></canvas>
+  <canvas></canvas>
   ```
 - Include the path to the pdf file in the controller
 

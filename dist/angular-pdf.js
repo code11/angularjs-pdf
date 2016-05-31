@@ -4,8 +4,6 @@
   'use strict';
 
   angular.module('pdf', []).directive('ngPdf', [ '$window', function($window) {
-    var renderTask = null;
-    var pdfLoaderTask = null;
     var debug = false;
 
     var backingScale = function(canvas) {
@@ -31,10 +29,13 @@
     };
     return {
       restrict: 'E',
+	  scope: { pdfUrl: '=' },
       templateUrl: function(element, attr) {
         return attr.templateUrl ? attr.templateUrl : 'partials/viewer.html';
       },
       link: function(scope, element, attrs) {
+		  var renderTask = null;
+		  var pdfLoaderTask = null;
         element.css('display', 'block');
         var url = scope.pdfUrl;
         var httpHeaders = scope.httpHeaders;
@@ -43,7 +44,7 @@
         var pageFit = attrs.scale === 'page-fit';
         var scale = attrs.scale > 0 ? attrs.scale : 1;
         var canvasid = attrs.canvasid || 'pdf-canvas';
-        var canvas = document.getElementById(canvasid);
+        var canvas = element.find('canvas')[0];
 
         debug = attrs.hasOwnProperty('debug') ? attrs.debug : false;
         var creds = attrs.usecredentials;
@@ -197,6 +198,7 @@
         });
 
         scope.$watch('pdfUrl', function(newVal) {
+		  console.log("PdF URL IS"+ newVal)
           if (newVal !== '') {
             if (debug) {
               console.log('pdfUrl value change detected: ', scope.pdfUrl);
